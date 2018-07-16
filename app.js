@@ -38,7 +38,7 @@ require('./routes/pages/user.js')(app);
 require('./routes/pages/unites.js')(app);
 require('./routes/pages/nutrients.js')(app);
 require('./routes/pages/extraction.js')(app);
-
+require('./routes/pages/recommandation.js')(app);
 app.use('/', index);
 
 
