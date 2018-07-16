@@ -39,6 +39,7 @@ require('./routes/pages/unites.js')(app);
 require('./routes/pages/nutrients.js')(app);
 require('./routes/pages/extraction.js')(app);
 require('./routes/pages/recommandation.js')(app);
+require('./routes/pages/sfApi.js')(app);
 app.use('/', index);
 
 
