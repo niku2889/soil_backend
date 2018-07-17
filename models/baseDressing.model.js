@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-const baseDressingSchema = new Schema({
+const BaseDressingSchema = new Schema({
     N_percentage_val: Schema.Types.Number,
     P_percentage_val: Schema.Types.Number,
     K_percentage_val: Schema.Types.Number,
@@ -30,4 +30,4 @@ const baseDressingSchema = new Schema({
     }]
 });
 
-module.exports = mongoose.model('baseDressing', baseDressingSchema);
+module.exports = mongoose.model('BaseDressing', BaseDressingSchema);

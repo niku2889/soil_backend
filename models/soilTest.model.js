@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-const soilTestSchema = new Schema({
+const SoilTestSchema = new Schema({
     SoilLabId: Schema.Types.Number,
     ST_Date: Schema.Types.String,
     ST_SoilType: Schema.Types.Number,
@@ -46,4 +46,4 @@ const soilTestSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('soilTest', soilTestSchema);
+module.exports = mongoose.model('SoilTest', SoilTestSchema);

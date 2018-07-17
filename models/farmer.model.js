@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-const recommandationSchema = new Schema({
+const FarmerSchema = new Schema({
     UniqeIdentifier: Schema.Types.String,
     Email:Schema.Types.String,
     FirstName: Schema.Types.String,
@@ -16,4 +16,4 @@ const recommandationSchema = new Schema({
     Cellular: Schema.Types.String
 });
 
-module.exports = mongoose.model('recommandation', recommandationSchema);
+module.exports = mongoose.model('Farmer', FarmerSchema);

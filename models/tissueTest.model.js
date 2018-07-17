@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-const tissueTestSchema = new Schema({
+const TissueTestSchema = new Schema({
     TT_Date: Schema.Types.String,
     TT_Variety: Schema.Types.String,
     TT_SamplingTime: Schema.Types.String,
@@ -24,4 +24,4 @@ const tissueTestSchema = new Schema({
     CL_Val:Schema.Types.Number
 });
 
-module.exports = mongoose.model('tissueTest', tissueTestSchema);
+module.exports = mongoose.model('TissueTest', TissueTestSchema);

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-const plotSchema = new Schema({
+const PlotSchema = new Schema({
     PlotArea: Schema.Types.Number,
     PlotTypeId: Schema.Types.Number,
     FarmId: Schema.Types.Number,
@@ -23,4 +23,4 @@ const plotSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('plot', plotSchema);
+module.exports = mongoose.model('Plot', PlotSchema);

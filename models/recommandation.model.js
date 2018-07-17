@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
-const Farmer = require('./farmer.model.js');
-const FarmerSchema = mongoose.model('Farmer').schema;
+
+ const Farmer = require('./farmer.model.js');
+ const FarmerSchema = mongoose.model('Farmer').schema;
 
 const Crop = require('./crop.model.js');
 const CropSchema = mongoose.model('Crop').schema;
@@ -13,7 +14,7 @@ const PlotSchema = mongoose.model('Plot').schema;
 const Fertilizers = require('./fertilizers.model.js');
 const FertilizersSchema = mongoose.model('Fertilizers').schema;
 
-const WaterTest = require('./crop.model.js');
+const WaterTest = require('./waterTest.model.js');
 const WaterTestSchema = mongoose.model('WaterTest').schema;
 
 const Irrigation = require('./irrigation.model.js');

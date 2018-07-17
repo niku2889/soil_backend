@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-const waterTestSchema = new Schema({
+const WaterTestSchema = new Schema({
     Name: Schema.Types.String,
     WT_Ph: Schema.Types.Number,
     WT_Ec: Schema.Types.Number,
@@ -25,4 +25,4 @@ const waterTestSchema = new Schema({
     CL_Val:Schema.Types.Number
 });
 
-module.exports = mongoose.model('waterTest', waterTestSchema);
+module.exports = mongoose.model('WaterTest', WaterTestSchema);

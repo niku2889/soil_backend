@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-const irrigationSchema = new Schema({
+const IrrigationSchema = new Schema({
     TotalWater: {
         Totalwater:Schema.Types.Number
     },
@@ -11,4 +11,4 @@ const irrigationSchema = new Schema({
     }]
 });
 
-module.exports = mongoose.model('irrigation', irrigationSchema);
+module.exports = mongoose.model('Irrigation', IrrigationSchema);

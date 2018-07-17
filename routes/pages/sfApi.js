@@ -1,11 +1,11 @@
 module.exports = (app) => {
-    const user = require('../../controllers/user.controller.js');
+    const sfApi = require('../../controllers/sfApi.controller.js');
 
     // Create a new Sport Details
-    app.post('/api/crops/', user.getcrops);
+    app.post('/api/crops/', sfApi.getcrops);
 
     // Retrieve all Sport Details
-    app.post('/api/varieties/', user.getvarieties);
+    app.post('/api/varieties/', sfApi.getvarieties);
 
     
 }
