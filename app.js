@@ -40,6 +40,7 @@ require('./routes/pages/nutrients.js')(app);
 require('./routes/pages/extraction.js')(app);
 require('./routes/pages/recommandation.js')(app);
 require('./routes/pages/sfApi.js')(app);
+require('./routes/pages/convertion.js')(app);
 app.use('/', index);
 
 
