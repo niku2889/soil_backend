@@ -299,19 +299,18 @@ var unitsOptions = {
 
 // Create and Save a new order 
 exports.getConvertion = (req, res) => {
-    //Validate request
 
-    var result =  {
-        getConvertedRules: getConvertedRules,
-        getNutrients: getNutrients,
-        changeNutrientForm: changeNutrientForm,
-        changeFromPPMtoUnit: changeFromPPMtoUnit,
-        rollbackToBaseNutrientForm: rollbackToBaseNutrientForm,
-        rollbackToPPm: rollbackToPPm,
-        getConcentrationUnitLabel: getConcentrationUnitLabel,
-        getNutrientFactor: getNutrientFactor,
-        getUnitOptions: getUnitOptions,
-        getAreaYieldGoalFactor: getAreaYieldGoalFactor
+    var result = {
+        // getConvertedRules: this.getConvertedRules(),
+        // getNutrients: this.getNutrients(),
+        changeNutrientForm: changeNutrientForm(req.body.nutrient, req.body.value, req.body.currentNutrientForm, req.body.toNutrientForm, req.body.fromUnit, req.body.toUnit, req.body.layerDepth, req.body.bulkDensity),
+        changeFromPPMtoUnit: changeFromPPMtoUnit(req.body.nutrient, req.body.toNutrientForm, req.body.value, req.body.toUnit, req.body.layerDepth, req.body.bulkDensity),
+        rollbackToBaseNutrientForm: rollbackToBaseNutrientForm(req.body.nutrient, req.body.currentNutrientForm, req.body.value),
+        rollbackToPPm: rollbackToPPm(req.body.nutrient, req.body.currentNutrientForm, req.body.value, req.body.fromUnit, req.body.layerDepth, req.body.bulkDensity),
+        // getConcentrationUnitLabel:this.getConcentrationUnitLabel(),
+        getNutrientFactor: getNutrientFactor(req.body.nutrient, req.body.fromUnit, req.body.toUnit),
+        getUnitOptions: getUnitOptions(req.body.nutrient),
+        getAreaYieldGoalFactor: getAreaYieldGoalFactor(req.body.yieldAreaUnitId)
     };
 
     res.send(result);
@@ -327,7 +326,6 @@ function getNutrients() {
     return nutrients;
 }
 
-/**/
 function changeNutrientForm(nutrient, value, currentNutrientForm, toNutrientForm, fromUnit, toUnit, layerDepth, bulkDensity) {
 
     if (value === null || value === undefined || value === '') {
@@ -384,7 +382,6 @@ function changeNutrientForm(nutrient, value, currentNutrientForm, toNutrientForm
     }
 }
 
-/**/
 function changeFromPPMtoUnit(nutrient, nutrientForm, value, toUnit, _layerDepth, _bulkDensity) {
     var rule = ruls[nutrient.toLowerCase() + "-nutrient"][nutrientForm.toLowerCase()];
     var layerDepth = _layerDepth || 20;
@@ -425,7 +422,6 @@ function changeFromPPMtoUnit(nutrient, nutrientForm, value, toUnit, _layerDepth,
     return convertedValue;
 }
 
-/**/
 function rollbackToPPm(nutrient, currentNutrientForm, value, fromUnit, _layerDepth, _bulkDensity) {
     var rule = ruls[nutrient.toLowerCase() + "-nutrient"][currentNutrientForm.toLowerCase()];
     var layerDepth = _layerDepth || 20;
@@ -466,7 +462,6 @@ function rollbackToPPm(nutrient, currentNutrientForm, value, fromUnit, _layerDep
     return ppmValue;
 }
 
-/**/
 function rollbackToBaseNutrientForm(nutrient, currentNutrientForm, value) {
     var rule = ruls[nutrient.toLowerCase() + "-nutrient"][currentNutrientForm.toLowerCase()];
     return value / rule.form_factor;
