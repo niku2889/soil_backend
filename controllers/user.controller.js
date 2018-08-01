@@ -5,24 +5,24 @@ let Request = require("request");
 
 // Create and Save a new order 
 exports.login = (req, res) => {
-    //Validate request
-    if (!req.body.userName) {
-        return res.status(400).send({
-            message: "User name content can not be empty"
-        });
-    } else if (!req.body.password) {
-        return res.status(400).send({
-            message: "Password content can not be empty"
-        });
-    }
+    // //Validate request
+    // if (!req.body.userName) {
+    //     return res.status(400).send({
+    //         message: "User name content can not be empty"
+    //     });
+    // } else if (!req.body.password) {
+    //     return res.status(400).send({
+    //         message: "Password content can not be empty"
+    //     });
+    // }
 
     Request.post({
         "headers": { "content-type": "application/json" },
         "url": "https://test-api.smart-fertilizer.com/user/login",
         "body": JSON.stringify({
-            "userName": req.body.userName,
-            "userIp": req.body.userIp,
-            "password": req.body.password
+            "userName": 'sagi4422@gmail.com',
+            "userIp": '123.12.1.0',
+            "password": 'abcd1234'
         })
     }, (error, response, body) => {
         if (error) {
