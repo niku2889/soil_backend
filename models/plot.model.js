@@ -5,10 +5,11 @@ const bcrypt = require('bcrypt-nodejs');
 const PlotSchema = new Schema({
     PlotArea: Schema.Types.Number,
     PlotTypeId: Schema.Types.Number,
-    FarmId: Schema.Types.Number,
+    PlotName:Schema.Types.String,
+    //FarmId: Schema.Types.Number,
     FarmName: Schema.Types.String,
     LocationGEO: {
-        PlotName: Schema.Types.String,
+        //PlotName: Schema.Types.String,
         features: [{
             geometry: {
 

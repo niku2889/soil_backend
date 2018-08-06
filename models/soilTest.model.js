@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt-nodejs');
 
 const SoilTestSchema = new Schema({
     SoilLabId: Schema.Types.Number,
+    SoilLabName:Schema.Types.String,
+    SoilTestName:Schema.Types.String,
     ST_Date: Schema.Types.String,
     ST_SoilType: Schema.Types.Number,
     ST_LayerDepth: Schema.Types.Number,
@@ -42,8 +44,8 @@ const SoilTestSchema = new Schema({
     Mo_Val: Schema.Types.Number,
     Na_Val: Schema.Types.Number,
     HCO3_Val: Schema.Types.Number,
-    CL_Val: Schema.Types.Number
-
+    CL_Val: Schema.Types.Number,
+    UnitId:Schema.Types.Number
 });
 
 module.exports = mongoose.model('SoilTest', SoilTestSchema);

@@ -7,6 +7,10 @@ module.exports = (app) => {
     // Retrieve all Sport Details
     app.post('/api/validatetoken/', user.validate);
 
+    app.post('/api/signup/', user.createSF);
+
+    app.post('/api/updatecustomer/', user.updateSF);
+
     // Retrieve a single Sport Details with Id
   // app.get('/api/pages/sportdetails/:Id', details.findOne);
 

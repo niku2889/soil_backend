@@ -301,14 +301,14 @@ var unitsOptions = {
 exports.getConvertion = (req, res) => {
 
     var result = {
-        // getConvertedRules: this.getConvertedRules(),
-        // getNutrients: this.getNutrients(),
+        //// getConvertedRules: this.getConvertedRules(),
+        //// getNutrients: this.getNutrients(),
         changeNutrientForm: changeNutrientForm(req.body.nutrient, req.body.value, req.body.currentNutrientForm, req.body.toNutrientForm, req.body.fromUnit, req.body.toUnit, req.body.layerDepth, req.body.bulkDensity),
         changeFromPPMtoUnit: changeFromPPMtoUnit(req.body.nutrient, req.body.toNutrientForm, req.body.value, req.body.toUnit, req.body.layerDepth, req.body.bulkDensity),
         rollbackToBaseNutrientForm: rollbackToBaseNutrientForm(req.body.nutrient, req.body.currentNutrientForm, req.body.value),
         rollbackToPPm: rollbackToPPm(req.body.nutrient, req.body.currentNutrientForm, req.body.value, req.body.fromUnit, req.body.layerDepth, req.body.bulkDensity),
-        // getConcentrationUnitLabel:this.getConcentrationUnitLabel(),
-        getNutrientFactor: getNutrientFactor(req.body.nutrient, req.body.fromUnit, req.body.toUnit),
+        //// getConcentrationUnitLabel:this.getConcentrationUnitLabel(),
+        getNutrientFactor: getNutrientFactor(req.body.nutrient, req.body.currentNutrientForm, req.body.toNutrientForm),
         getUnitOptions: getUnitOptions(req.body.nutrient),
         getAreaYieldGoalFactor: getAreaYieldGoalFactor(req.body.yieldAreaUnitId)
     };
@@ -354,7 +354,6 @@ function changeNutrientForm(nutrient, value, currentNutrientForm, toNutrientForm
     toUnit = toUnit || 'ppm';
 
     //in case moving from different form (none of the base form)
-
     var rule = ruls[nutrient.toLowerCase() + "-nutrient"][toNutrientForm.toLowerCase()];
 
     // in case talkinhg  only in ppm simple conversion

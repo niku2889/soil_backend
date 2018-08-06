@@ -8,15 +8,15 @@ exports.getDetails = (req, res) => {
     //Validate request
     Request.post({
         "headers": { "content-type": "application/json" },
-        "url": "https://test-api.smart-fertilizer.com/recommendation/" + req.body.UserId + "?token=" + req.body.Toekn,
+        "url": "https://test-api.smart-fertilizer.com/recommendation/" + req.body.userId + "?token=" + req.body.token,
         "body": JSON.stringify({
             "Farmer": req.body.Farmer,
             "Crop": req.body.Crop,
             "Plot": req.body.Plot,
             "Fertilizers": req.body.Fertilizers,
-            "WaterTest": req.body.WaterTest,
-            "Irrigation": req.body.Irrigation,
-            "TissueTest": req.body.TissueTest,
+            // "WaterTest": req.body.WaterTest,
+            // "Irrigation": req.body.Irrigation,
+            // "TissueTest": req.body.TissueTest,
             "SoilTest": req.body.SoilTest,
             "BaseDressing": req.body.BaseDressing
         })
@@ -24,7 +24,7 @@ exports.getDetails = (req, res) => {
         if (error) {
             return res.status(400).send(error);
         }
-        return res.status(200).send(JSON.parse(body));
+        return res.status(200).send(body);
     });
 
 };

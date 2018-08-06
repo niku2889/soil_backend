@@ -2,6 +2,19 @@ const User = require('../models/user.model.js');
 const https = require('https');
 const fetch = require('node-fetch');
 let Request = require("request");
+var username = 'sagi@smart.sb1';
+var userpassword = 'acdc4422';
+var token = 'bDUYSz5mfXMXwhvfiKKLdHFD';
+var password = userpassword + token;
+var jsforce = require('jsforce');
+var accountRecordId = '';
+var contactRecordId = '';
+var return1 = {};
+//initilize connection
+var conn = new jsforce.Connection({
+    // you can change loginUrl to connect to sandbox or prerelease env.
+    loginUrl: 'https://test.salesforce.com'
+});
 
 // Create and Save a new order 
 exports.login = (req, res) => {
@@ -52,3 +65,87 @@ exports.validate = (req, res) => {
         res.status(200).send(JSON.parse(body));
     });
 };
+
+// Find a single reservation with a Id
+exports.createSF = (req, res) => {
+    if (!req.body.firstname) {
+        return res.status(400).send({
+            message: "First Name content can not be empty"
+        });
+    } else if (!req.body.lastname) {
+        return res.status(400).send({
+            message: "Last Name content can not be empty"
+        });
+    } else if (!req.body.email) {
+        return res.status(400).send({
+            message: "Email content can not be empty"
+        });
+    } else if (!req.body.country) {
+        return res.status(400).send({
+            message: "Country content can not be empty"
+        });
+    }
+
+    //login to Salesforce
+    conn.login(username, password, function (err, userInfo) {
+        if (err) { return console.error(err); }
+        // Now you can get the access token and instance URL information.
+        // Save them to establish connection next time.
+        //Open an Account
+        conn.sobject("Account").create({
+            Name: 'Sagi_Gliksman',
+            type: "Prospect",
+            BillingCountry: 'Israel',
+            ShippingCountry: 'Israel'
+        }, function (err, ret) {
+            if (err || !ret.success) { return res.status(400).send(error); }
+            accountRecordId = ret.id;
+            //Open a Contact inside an Account
+            conn.sobject("Contact").create({
+                lastName: req.body.lastname,
+                firstName: req.body.firstname,
+                email: req.body.email,
+                mailingCountry: req.body.country,
+                AccountId: accountRecordId
+            }, function (err, ret) {
+                if (err || !ret.success) { return res.status(400).send(error); }
+                contactRecordId = ret.id;
+                return1  = {
+                    "accountId": accountRecordId,
+                    "contactId": contactRecordId
+                }
+                res.status(200).send(return1);
+            });
+        });
+    });
+};
+
+
+exports.updateSF = (req, res) => {
+    //login to Salesforce
+    conn.login(username, password, function (err, userInfo) {
+        if (err) { return res.status(400).send(err); }
+        conn.sobject("Account").update({
+            Id: accountRecordId,
+            SMARTDB_ID__c: '1542', //Need to check if this is the right variable
+            Payment_Reference__c: '87564678', //Need to check if this is the right variable
+            Plot_Size__c: '5', //Need to check if this is the right variable
+            Crop_name__c: 'Avocado', //Need to check if this is the right variable
+            type: "Customer"
+        }, function (err, ret) {
+            if (err || !ret.success) { return res.status(400).send(err); }
+            conn.sobject("Contact").update({
+                Id: contactRecordId,
+                Total_Area_ha__c: '5',
+                Crop__c: 'Avocado',
+
+            }, function (err, ret) {
+                if (err || !ret.success) { return res.status(400).send(err); }
+                res.status(200).send(ret.id);
+            });
+        });
+
+    });
+};
+
+

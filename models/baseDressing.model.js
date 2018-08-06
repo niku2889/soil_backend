@@ -18,15 +18,16 @@ const BaseDressingSchema = new Schema({
     Na_percentage_val: Schema.Types.Number,
     HCO3_percentage_val: Schema.Types.Number,
     CO3_percentage_val: Schema.Types.Number,
-    Cl_percentage_val: Schema.Types.Number,
+    //Cl_percentage_val: Schema.Types.Number,
     CEC: Schema.Types.Number,
     SoilTypeId: Schema.Types.Number,
     SelectedFertilizers: [{
         FertilizerId: Schema.Types.Number,
-        Name: Schema.Types.String,
-        Concentration: Schema.Types.Number,
-        ConcentrationUnit: Schema.Types.Number,
-        IsLiquid: Schema.Types.Boolean,
+        Id: Schema.Types.Number
+        // Name: Schema.Types.String,
+        // Concentration: Schema.Types.Number,
+        // ConcentrationUnit: Schema.Types.Number,
+        // IsLiquid: Schema.Types.Boolean,
     }]
 });
 
