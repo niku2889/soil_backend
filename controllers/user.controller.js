@@ -93,10 +93,10 @@ exports.createSF = (req, res) => {
         // Save them to establish connection next time.
         //Open an Account
         conn.sobject("Account").create({
-            Name: 'Sagi_Gliksman',
+            Name: req.body.firstname + '_' + req.body.lastname,
             type: "Prospect",
-            BillingCountry: 'Israel',
-            ShippingCountry: 'Israel'
+            BillingCountry:  req.body.country,
+            ShippingCountry:  req.body.country
         }, function (err, ret) {
             if (err || !ret.success) { return res.status(400).send(error); }
             accountRecordId = ret.id;
@@ -110,7 +110,7 @@ exports.createSF = (req, res) => {
             }, function (err, ret) {
                 if (err || !ret.success) { return res.status(400).send(error); }
                 contactRecordId = ret.id;
-                return1  = {
+                return1 = {
                     "accountId": accountRecordId,
                     "contactId": contactRecordId
                 }
@@ -126,18 +126,18 @@ exports.updateSF = (req, res) => {
     conn.login(username, password, function (err, userInfo) {
         if (err) { return res.status(400).send(err); }
         conn.sobject("Account").update({
-            Id: accountRecordId,
+            Id: req.body.accountId,
             SMARTDB_ID__c: '1542', //Need to check if this is the right variable
             Payment_Reference__c: '87564678', //Need to check if this is the right variable
             Plot_Size__c: '5', //Need to check if this is the right variable
-            Crop_name__c: 'Avocado', //Need to check if this is the right variable
+            Crop_name__c: req.body.cropName, //Need to check if this is the right variable
             type: "Customer"
         }, function (err, ret) {
             if (err || !ret.success) { return res.status(400).send(err); }
             conn.sobject("Contact").update({
-                Id: contactRecordId,
+                Id: req.body.contactId,
                 Total_Area_ha__c: '5',
-                Crop__c: 'Avocado',
+                Crop__c: req.body.cropName,
 
             }, function (err, ret) {
                 if (err || !ret.success) { return res.status(400).send(err); }
