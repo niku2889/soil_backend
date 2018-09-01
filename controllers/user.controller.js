@@ -131,7 +131,7 @@ exports.updateSF = (req, res) => {
             Payment_Reference__c: '87564678', //Need to check if this is the right variable
             Plot_Size__c: '5', //Need to check if this is the right variable
             Crop_name__c: req.body.cropName, //Need to check if this is the right variable
-            type: "Customer"
+            Type: "Customer"
         }, function (err, ret) {
             if (err || !ret.success) { return res.status(400).send(err); }
             conn.sobject("Contact").update({
